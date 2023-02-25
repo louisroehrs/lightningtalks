@@ -6,13 +6,14 @@
       // After talk slide
       // Methods of engagement
       
-      
       engage = [
         "Become a member.",
-        "Give at https://givebutter.com/givingtuesdayhackerdojo",
+        "Give at https://givebutter.com/growhackerdojo",
         "Attend events https://www.meetup.com/hackerdojo",
-        "Watch and subscribe https://www.youtube.com/c/HackerDojo",
+        "Watch and subscribe https://www.youtube.com/HackerDojo",
       ];
+
+      qrcodeurl = "https://givebutter.com/growhackerdojo"
     </script>
     
     <style>
@@ -120,7 +121,9 @@
         <div class="spacer">&nbsp;</div>
         <div class="spacer">&nbsp;</div>
         <div>
-          <img src="https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fgivebutter.com%2Fgivingtuesdayhackerdojo&chs=180x180&choe=UTF-8&chld=L|2">
+          <script language="Javascript">
+            document.write("<img src='https://chart.googleapis.com/chart?cht=qr&chl=" + qrcodeurl + "&chs=180x180&choe=UTF-8&chld=L|2'>")
+          </script>
         </div>
       </div>
 
