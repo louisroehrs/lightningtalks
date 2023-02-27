@@ -1,0 +1,158 @@
+<!doctype html>
+
+<html>
+  <head>
+    <script language="JavaScript">
+      // After talk slide
+      // Methods of engagement
+      
+      engage = [
+        "Become a member.",
+        "Give at https://givebutter.com/growhackerdojo",
+        "Attend events https://www.meetup.com/hackerdojo",
+        "Watch and subscribe https://www.youtube.com/HackerDojo",
+      ];
+
+      qrcodeurl = "https://givebutter.com/growhackerdojo"
+    </script>
+    
+    <style>
+      @font-face {
+          font-family: "HackerDojoFont";
+          src: url("./fonts/whitney-medium.woff");
+      }
+
+      BODY {
+          font-family: 'HackerDojoFont', arial;
+          font-size: 48px;
+          margin-left:110px;
+          margin-right:60px;
+          margin-top:100px;
+          background-color:black;
+          color:white;
+      }
+      .title {
+          font-size:190%;
+      }
+      .date {
+          font-size:60%;
+      }
+      
+      .columns {
+          display:flex;
+          flex-direction: columns;
+          justify-content: space-between;
+          grid-gap:10%;
+      }
+      .left, .right {
+          text-align: left;
+      }
+      .left {
+          width:40%
+      }
+      .right {
+          width:60%
+      }
+      .lineup {
+          margin-left:-15px;
+          margin-top:15px;
+      }
+      .spacer {
+          height:65px;
+      }
+      .largelineheight {
+          line-height: 1.5
+      }
+      .countdown {
+          
+      }
+      </style>
+  </head>
+  
+  <body>
+    <div class="columns">
+      <div class="left">
+        <svg id="Layer_1" width=450 data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1176.88 415.5">
+          <defs>
+            <style>
+              .cls-1 {
+                  fill: url(#linear-gradient);
+              }
+              
+              .cls-2 {
+                  fill: #fff;
+              }
+            </style>
+            <linearGradient id="linear-gradient" x1="23.54" y1="17.34" x2="395.06" y2="401.37" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#cc1e53"/>
+              <stop offset="1" stop-color="#b11e41"/>
+            </linearGradient>
+          </defs>
+          <rect class="cls-2" x="28.23" y="68.31" width="350.51" height="295.81"/>
+          <g>
+            <g>
+              <path class="cls-2" d="m583.42,203.13v-59.94h-65.78v59.94h-17.72V73.08h17.72v53.9h65.78v-53.9h17.72v130.05h-17.72Z"/>
+              <path class="cls-2" d="m673.12,72.52h17.71l50.13,128.17-17.15,3.77-15.45-40.34h-53.53l-14.7,39.02h-17.91l50.89-130.61Zm-12.25,75.96h41.66l-20.93-55.22-20.73,55.22Z"/>
+              <path class="cls-2" d="m811.83,205.58c-36.57,0-60.13-27.14-60.13-67.29s23.93-67.66,60.5-67.66c15.45,0,26.95,3.96,36.94,10.74l-2.64,18.1c-9.42-7.16-20.54-12.63-34.49-12.63-26.39,0-42.03,19.98-42.03,51.26s15.83,51.08,42.03,51.08c13.95,0,26.2-5.47,36.57-13.01l2.64,16.77c-9.99,7.35-24.5,12.63-39.39,12.63Z"/>
+              <path class="cls-2" d="m956.95,204.45l-60.5-67.29v65.97h-17.71V73.08h17.71v58.43l54.28-58.43h22.24l-57.3,61.07,60.5,66.16-19.22,4.15Z"/>
+              <path class="cls-2" d="m993.5,203.13V73.08h70.11v16.21h-52.39v37.69h40.71l2.64,16.21h-43.35v43.73h54.28v16.21h-72Z"/>
+              <path class="cls-2" d="m1158.98,204.45l-39.77-56.17h-13.38v54.85h-17.71V73.08h35.43c26.57,0,43.16,13.2,43.16,36.94,0,19.79-11.5,31.48-28.46,36l38.64,54.47-17.9,3.96Zm-36.19-115.73h-16.96v44.67h15.08c17.15,0,28.08-7.73,28.08-22.43s-8.86-22.24-26.2-22.24Z"/>
+              <path class="cls-2" d="m536.86,359.54h-36.94v-130.05h37.7c45.24,0,68.42,26.76,68.42,64.84s-24.5,65.21-69.17,65.21Zm1.32-114.03h-20.54v98.01h19.98c31.29,0,50.13-15.83,50.13-49s-19.79-49-49.57-49Z"/>
+              <path class="cls-2" d="m686.88,361.99c-36.56,0-59.74-27.14-59.74-67.29s23.56-67.66,60.13-67.66,59.74,27.14,59.74,67.29-23.37,67.66-60.13,67.66Zm.19-118.74c-25.82,0-41.65,19.98-41.65,51.26s16.02,51.26,41.65,51.26,41.65-19.98,41.65-51.26-16.02-51.26-41.65-51.26Z"/>
+              <path class="cls-2" d="m770.17,360.86c-4.15,0-8.48-.56-11.68-1.13l-2.64-16.02c4.33,1.13,8.29,1.7,14.51,1.7,12.06,0,18.84-5.65,18.84-19.41v-96.5h17.72v98.01c0,23.18-14.71,33.36-36.76,33.36Z"/>
+              <path class="cls-2" d="m891.55,361.99c-36.57,0-59.74-27.14-59.74-67.29s23.56-67.66,60.12-67.66,59.75,27.14,59.75,67.29-23.37,67.66-60.13,67.66Zm.19-118.74c-25.82,0-41.65,19.98-41.65,51.26s16.02,51.26,41.65,51.26,41.66-19.98,41.66-51.26-16.02-51.26-41.66-51.26Z"/>
+            </g>
+            <path class="cls-1" d="m399.86,0H15.64C7,0,0,7,0,15.64v384.21c0,8.64,7,15.64,15.64,15.64h384.22c8.64,0,15.64-7,15.64-15.64V15.64C415.5,7,408.49,0,399.86,0Zm-248.24,117.81v187.69h-.01s0,0,0,0c0,6.29-7,11.38-15.64,11.38s-15.14-4.79-15.56-10.81h-.08c0-29.46-.19-66.58.01-102.25h-58.65v-27.37h58.65v-31.28h-63.7c-2.05-9.94-5.26-18-11.73-23.46v-3.91h75.43v-7.73s-.01-.05-.01-.08c0-6.29,7-11.39,15.64-11.39s15.63,5.09,15.64,11.38h.01c-.11,6.81-.23-2.42,0,7.82Zm144.67,187.69s0,0-.01,0h0c0,6.29-7,11.39-15.64,11.39s-15.64-5.09-15.64-11.38c0-.03.01-.06.01-.08.09-29.47-.21-65.95,0-101.59h-105.53v-27.37h42.97v-23.43h15.64v23.43h46.92v-31.28h-18.61s-77.99,0-77.99,0h0s-8.93,0-8.93,0v-27.37h105.53v-7.73s-.01-.05-.01-.08c0-6.29,7-11.39,15.64-11.39,8.12,0,14.71,4.53,15.47,10.3v113.79h.18v82.8Zm54.74-101.66h-47.67v-27.37h47.67v27.37Zm19.55-82.11c-6.47,5.46-9.68,13.52-11.73,23.46h-55.49v-27.37h67.22v3.91Z"/>
+          </g>
+        </svg>
+        
+        <div class="spacer">&nbsp;</div>
+        <div class="title">
+           Lightning Talks
+        </div>
+        <div minHeight=20></div>
+        <div>
+          Thank you for coming tonight!
+        </div>
+        <div class="spacer">&nbsp;</div>
+        <div>
+          Find us at https://hackerdojo.org<BR/>
+        </div>
+        <div class="spacer">&nbsp;</div>
+        <div class="spacer">&nbsp;</div>
+        <div>
+          <script language="Javascript">
+            document.write("<img src='https://chart.googleapis.com/chart?cht=qr&chl=" + qrcodeurl + "&chs=180x180&choe=UTF-8&chld=L|2'>")
+          </script>
+        </div>
+      </div>
+
+    
+      <div class="right">
+        <div class="lineup">Support the dojo and keep the spirit of the valley alive.</div>
+        <div class="largelineheight" id="list">
+        </div>
+      </div>
+
+    </div>
+
+    
+    <script language="JavaScript">
+
+      (function listTalks() {
+        engage.map( (method,i) => {
+          const p = document.createElement("p");
+          p.innerText = engage[i];
+          document.getElementById("list").append(p);
+        })
+      })();
+                 
+    </script>
+    
+
+  </body>
+</html>
+
+
+
+  
