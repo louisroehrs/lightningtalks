@@ -1,0 +1,137 @@
+      @font-face {
+          font-family: "HackerDojoFont";
+          src: url("./fonts/whitney-medium.woff");
+      }
+
+      @font-face {
+          font-family: "Horizon";
+          src: url("./fonts/horizon.c7c834b7fe209bdc0a30119a6b1d26ae.b3ebf62f8ff8ae950dea860d56c49d1b.woff2");
+      }
+
+      @font-face {
+          font-family: "Lightning";
+          src: url("./fonts/Edo_new14539556727599266484.788b49731d86.2a24fe76e95bd0389c47556fa84e15d8.woff2");
+      }
+
+      BODY {
+          font-family: 'Horizon', arial;
+          font-size: 32px;
+          margin:0;
+          background-color:black;
+
+          background-opacity: 0.5;
+          color:#CEFB50;
+          color:#c4fc2f;
+          height:100%;
+          overflow:hidden;
+      }
+
+      HTML {
+          margin: 0;
+      }
+
+      .textshadow {
+          text-shadow: 1px 1px 2px black, 0 0 1px black, 0 0 0.2em black
+      }
+
+      .shadow {
+          box-shadow: 1px 1px 2px black, 0 0 1px black, 0 0 0.2em black;
+      }
+
+      .lightningtalks {
+          font-family: "Lightning";
+          font-size:400%;
+      }
+      .hdlogo {
+          bottom: 10px;
+          left:10px;
+      }
+
+      .date {
+          font-size:60%;
+          display:none;
+      }
+      
+      .columns {
+          padding-left:80px;
+          padding-right:60px;
+          position:absolute;
+          width: calc( 100vw - 80px);
+          display:flex;
+          flex-direction: columns;
+          justify-content: space-between;
+      }
+      .left, .right {
+          padding-top:60px;
+          text-align: left;
+      }
+      .left {
+          width:50%
+      }
+      .right {
+          background-color:black;
+          padding-left:50px;
+          width:50%;
+          margin-right: -20px;
+          padding-right: 60px;
+      }
+      .spacer {
+          height:65px;
+      }
+      .functional {
+          font-family: "Helvetica";
+          color:white;
+          font-size: 120%;
+          text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+      }
+      
+      .largelineheight {
+          font-family: "Helvetica";
+          color:white;
+          font-size: 130%;
+          line-height: 1.5;
+          text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+      }
+      .countdown {
+          
+      }
+
+      .whitebar {
+          width:80%;
+          height:5px;
+          background-color:white;
+          margin-top:20px;
+          margin-bottom:20px;
+      }
+
+      #bolt {
+          background-image: url('./assets/boltbig.png');
+          background-repeat: no-repeat;
+          background-size: contain;
+          position:absolute;
+          top:0;
+          left:100px;
+          height:1200px;
+          width:1600px ;
+      }
+
+      #mic {
+          background-image: url('./assets/mic.png');
+          background-repeat: no-repeat;
+          position:absolute;
+          left:350px;
+          bottom:0px;
+          height:624px;
+          width:597px;
+      }
+                               
+      .pixel {
+          width:10px;
+          height:10px;
+          background-color:black;
+          position:absolute;
+      }
+      .panel {
+          position:relative;
+      }
+
