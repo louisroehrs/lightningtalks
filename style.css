@@ -109,7 +109,7 @@
           background-repeat: no-repeat;
           background-size: contain;
           position:absolute;
-          top:0;
+          top:-100px;
           left:100px;
           height:1200px;
           width:1600px ;
