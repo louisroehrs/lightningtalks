@@ -13,12 +13,13 @@
 talks = [
   "Think Like Silicon Valley, Being Anywhere - Jorge",
   "Why ChatGPT? - Louis",
-  "Getting Started with Ray - Sako",
   "Everything as Manifestation of Personality - Roy",
   "Another Trillion - Charles",
   "Developing Self-Driving Car System - Takuto",
   "Adding External Knowledge to LLMs - Masha",
-  "Tracing BItcoin - Peter"
+  "Getting Started with Ray - Sako",
+  "Run Fast, Otherwise Don't - Lena",
+  "Tracing Bitcoin - Peter",
 ];
 
 hosts = "Louis and Ishai";
