@@ -15,7 +15,8 @@ talks = [
   "Why ChatGPT? - Louis",
   "Getting Started with Ray - Sako",
   "Everything as Manifestation of Personality - Roy",
-  "Another Trillion - Charles"
+  "Another Trillion - Charles",
+  "Developing Self-Driving Car System - Takuto" 
 ];
 
 hosts = "Louis and Ishai";
