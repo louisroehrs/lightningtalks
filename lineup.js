@@ -20,6 +20,7 @@ talks = [
   "Getting Started with Ray - Sako",
   "Run Fast, Otherwise Don't - Lena",
   "Tracing Bitcoin - Peter",
+  "Dark Art Village - Marco"
 ];
 
 hosts = "Louis and Ishai";
