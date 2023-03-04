@@ -16,7 +16,9 @@ talks = [
   "Getting Started with Ray - Sako",
   "Everything as Manifestation of Personality - Roy",
   "Another Trillion - Charles",
-  "Developing Self-Driving Car System - Takuto" 
+  "Developing Self-Driving Car System - Takuto",
+  "Adding External Knowledge to LLMs - Masha",
+  "Tracing BItcoin - Peter"
 ];
 
 hosts = "Louis and Ishai";
