@@ -11,19 +11,14 @@
 // Save this file to our storage place (TBD) to keel a record. Use this filename convention.  LighteningTalk-<talkdate>.html
       
 talks = [
-  "Hacks from a Bootstrapping Solopreneur - Natalia",
-  "Explainable AI - Masha",
-  "Just Ski - Lena",
-  "Something Cool - Strick",
-  "Wisdom - Roy",
-  "Garbage Classification - Ravendu",
-  "JetRacer Controlled by Body Posture - Rashika",
-  "Coffeespace - Hazim",
-  "Take Great Care of Yourself - Kevin",
-  "Boundary App - Jim",
+  "Think Like Silicon Valley, Being Anywhere - Jorge",
+  "Why ChatGPT? - Louis",
+  "Getting Started with Ray - Sako",
+  "Everything as Manifestation of Personality - Roy",
+  "Another Trillion - Charles"
 ];
 
-hosts = "Host and Ishai";
+hosts = "Louis and Ishai";
 
 engage = [
   "Become a member https://hackerdojo.com",
