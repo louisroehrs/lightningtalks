@@ -24,6 +24,7 @@
 */
 
 talks = [
+  "Sign up starts at 6pm"
 ];
 
 hosts = "Louis and Ishai";
