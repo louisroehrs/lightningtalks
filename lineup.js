@@ -9,8 +9,8 @@
 // Add a talk and save, the file will automatically update on its own schedule.  1/3 minute or just reload.
 
 // Save this file to our storage place (TBD) to keel a record. Use this filename convention.  LighteningTalk-<talkdate>.html
-      
-talks = [
+
+/*
   "Think Like Silicon Valley, Being Anywhere - Jorge",
   "Why ChatGPT? - Louis",
   "Everything as Manifestation of Personality - Roy",
@@ -21,6 +21,9 @@ talks = [
   "Run Fast, Otherwise Don't - Lena",
   "Tracing Bitcoin - Peter",
   "Dark Art Village - Marco"
+*/
+
+talks = [
 ];
 
 hosts = "Louis and Ishai";
