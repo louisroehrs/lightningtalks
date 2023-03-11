@@ -27,6 +27,7 @@ talks = [
   "Using ChatGPT to Create a Google Login - Ken",
   "Open Chip Design - James",
   "Near Shoring - Clemente",
+  "Personality That Transcends People - Roy",
   "Creating Interactive Coding Videos With Ease - Ash",
   "Five Necessarily Elements to be an Entrepreneur - Jorge",
   "Asking LLMA About SVB - Sako"
