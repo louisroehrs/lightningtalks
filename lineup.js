@@ -24,7 +24,12 @@
 */
 
 talks = [
-  "Sign up starts at 6pm"
+  "Using ChatGPT to Create a Google Login - Ken",
+
+  
+  "Creating Interactive Coding Videos With Ease - Ash",
+  "Five Necessarily Elements to be an Entrepreneur - Jorge",
+  "Asking LLMA About SVB - Sako"
 ];
 
 hosts = "Louis and Ishai";
