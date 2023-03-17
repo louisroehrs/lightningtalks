@@ -4,11 +4,6 @@
   <head>
 
     <link href="https://firebasestorage.googleapis.com/v0/b/donorable-372023.appspot.com/o/style.css?alt=media&token=427dceaf-f727-4597-a09e-89aff7e76467" rel="stylesheet"/>
-      <style>
-          .plainFont {
-              font-family: "Apple Symbols";
-          }
-      </style>
 
       <script>
         let qrcodeurl = "https://givebutter.com/growhackerdojo";
@@ -18,7 +13,8 @@
           "agenda" : "./agenda.html?alt=media&token=c94eadbd-65f8-4817-a4df-3e321612d07d",
           "after" : "./after.html?alt=media&token=59344ded-8cbb-4e39-b3e6-72719c436c9e",
           "welcome": "./welcome.html?alt=media&token=6f22f023-5615-4acb-9a86-c6dda182a24c",
-          "pixel" : "./pixel.html?alt=media&token=ac1bbe00-a0f5-4f5d-8603-3c6231eaa38f"
+          "pixel" : "./pixel.html?alt=media&token=ac1bbe00-a0f5-4f5d-8603-3c6231eaa38f",
+          "support" :"./support.html?alt=media&token=9621c8b2-3d94-464b-81df-56958f19a9a0"
         };
 
       </script>
@@ -90,7 +86,7 @@
         fetch("lineup.json?alt=media&token=48714a43-e349-4871-85b7-f346f663bcad")
           .then(response => response.json())
           .then(data => {
-            if ( data.showpage === "after" || data.showpage === "pixel" || data.showpage === "welcome" ) {
+            if ( data.showpage === "after" || data.showpage === "pixel" || data.showpage === "support" ) {
               location.href = pages[data.showpage];
             }
             console.log(data);

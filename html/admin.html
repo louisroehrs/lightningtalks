@@ -9,9 +9,7 @@
               overflow: scroll;
               font-size:90%;
           }
-          .plainFont {
-              font-family: "Apple Symbols";
-          }
+
           form {
               display:flex;
               margin: 3em;
@@ -84,7 +82,6 @@
     async function fetchJSON() {
       let formData = new FormData(form);
       fetch("lineup.json?alt=media&token=48714a43-e349-4871-85b7-f346f663bcad")
-//      fetch("lineuptest.json?alt=media&token=7c35271a-ed9d-40f8-869c-3cc4676bdfd3")
         .then(response => response.json())
         .then(data => {
           console.log(data);
@@ -92,11 +89,11 @@
           form.title.value = data.title || "";
           form.subtitle.value = data.subtitle || "";
 
-          document.getElementById("agenda").selected = false;
-          document.getElementById("after").selected = false;
+          if (!data.showpage) data.showpage = "agenda";
 
-//          document.getElementById(data.showpage).selected =true;
-
+          document.getElementById("agenda").checked = false;
+          document.getElementById("after").checked = false;
+          document.getElementById(data.showpage).checked =true;
           document.getElementById("talklist").innerText = "";
           document.getElementById("engagelist").innerText = "";
           for (let i = 0; i < 10; i++) {
@@ -182,9 +179,15 @@
 
           <P>Select a page:</P>
           <input type="radio" id="agenda" name="showpage" value="agenda">
-          <label for="agenda">Agenda</label>
+          <label for="agenda">LT Agenda</label>
           <input type="radio" id="after" name="showpage" value="after">
-          <label for="after">After</label><br><br>
+          <label for="after">LT After</label>
+          <input type="radio" id="support" name="showpage" value="support">
+          <label for="support">HD Support</label>
+          <input type="radio" id="pixel" name="showpage" value="pixel">
+          <label for="pixel">HD Pixels</label>
+
+          <br><br>
 
           <input type="button" id="mybutton"  value="Submit">
           <div height="30px">&nbsp;</div>
