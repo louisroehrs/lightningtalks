@@ -1,0 +1,131 @@
+<!doctype html>
+
+<html>
+  <head>
+
+    <link href="https://firebasestorage.googleapis.com/v0/b/donorable-372023.appspot.com/o/style.css?alt=media&token=427dceaf-f727-4597-a09e-89aff7e76467" rel="stylesheet"/>
+      <style>
+          .plainFont {
+              font-family: "Apple Symbols";
+          }
+      </style>
+  </head>
+
+  <body>
+    <div id="bolt"></div>
+    <div id="mic"></div>
+
+    <div class="columns">
+      <div class="left">
+        <div class="lightningtalks">
+            Lightning<BR>Talks &#127808;
+        </div>
+        <div class="whitebar"></div>
+        <div class="textshadow">
+          nerd's open mic night
+        </div>
+        <div minHeight=20></div>
+        <div class="spacer">&nbsp;</div>
+        <div class="functional">
+          Networking 6:00 - 7:00pm<BR/>
+          Talks start<span id="countdown"></span><BR>at 7:00pm<BR/>
+          Discussions until 9:00pm<BR/>
+        </div>
+        <div class="spacer">&nbsp;</div>
+        <div class="functional">
+          Sign up with <span id="hosts"></span>
+        </div>
+
+        <div class="spacer">&nbsp;</div>
+        <div class="date"><span id="talkdate"></span>&nbsp;&nbsp; <span id="currentTime"></span></div>
+        <div class="spacer">&nbsp;</div>
+        <div class="hdlogo"><img src="./assets%2Flogo_tori_white_360.png?alt=media&token=93286ec9-bc91-4056-972f-77e1c14a0b69" width="300" /></div>
+
+      </div>
+
+
+      <div class="right">
+        <div class="spacer">&nbsp;</div>
+        <div class="textshadow">Tonight's LineUp</div>
+        <div class="whitebar"></div>
+        <div class="largelineheight">
+          <ol id="talks">
+          </ol>
+        </div>
+        <div class="spacer">&nbsp;</div>
+        <div class="spacer">&nbsp;</div>
+        <div class="spacer">&nbsp;</div>
+      </div>
+
+    </div>
+
+
+    <script language="JavaScript">
+
+      function listTalks(talks) {
+        document.getElementById("talks").innerHTML ="";
+        talks.map( (talk,i) => {
+          const li = document.createElement("li");
+          li.innerText = talks[i];
+          document.getElementById("talks").append(li);
+        })
+      };
+
+
+      function fetchJSON() {
+        fetch("lineup.json?alt=media&token=48714a43-e349-4871-85b7-f346f663bcad")
+          .then(response => response.json())
+          .then(data => {
+            if ( data.showpage === "after" || data.showpage === "pixel" || data.showpage === "welcome" ) {
+              location.href = data.pages[data.showpage];
+            }
+            console.log(data);
+            document.getElementById("hosts").innerText = data.hosts;
+            listTalks(data.talks);
+          })
+          .catch(error => {
+            document.getElementById("talks").innerText = "Check fetching lineup";
+
+            console.error(error);
+          });
+      }
+
+      // fetch JSON initially
+      fetchJSON();
+
+      // reload JSON every 20 seconds
+      setInterval(fetchJSON, 20000);
+
+      function updateTime() {
+        const startTime = "19:00";  // 7pm start time is 19:00
+        const s = startTime.split(':');
+
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+
+        document.getElementById("currentTime").innerText = (hours + ":") + ((minutes < 10) ? "0" + minutes : minutes);
+        document.getElementById("talkdate").innerText = now.toDateString();
+
+        const start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), parseInt(s[0], 10), parseInt(s[1], 10), 0, 0);
+        beforeStartMs = start- now;
+        if ( beforeStartMs > 0 && beforeStartMs < 24* 60 *60* 1000 ) {
+          let beforeDate = new Date(beforeStartMs);
+          let beforeStartMinutes = beforeDate.getMinutes();
+          let beforeStartSeconds = beforeDate.getSeconds();
+          document.getElementById("countdown").innerText=" in " + beforeStartMinutes + " minutes ";
+          setTimeout(updateTime,8);
+        } else {
+          document.getElementById("countdown").innerText ="ing now ";
+        }
+      }
+
+      setTimeout(updateTime, 1);
+
+    </script>
+  </body>
+</html>
+
+
+
+

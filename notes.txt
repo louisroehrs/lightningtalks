@@ -1,7 +1,6 @@
 
 
 
-
 // Setup the lightening talk just by filling out these variables and save the file.
 // This is the only file needed, all assets in this HTML.
 // Point your browser to index.html.
@@ -23,26 +22,4 @@
   "Dark Art Village - Marco"
 */
 
-talks = [
-  "Using ChatGPT to Create a Google Login - Ken",
-  "Open Chip Design - James",
-  "Near Shoring - Clemente",
-  "Motivation as a Muscle - Kevin",
-  "Personality That Transcends People - Roy",
-  "Creating Interactive Coding Videos With Ease - Ash",
-  "Five Necessary Elements to be an Entrepreneur - Jorge",
-  "Asking LLMA About SVB - Sako"
-];
-
-hosts = "Louis and Ishai";
-
-engage = [
-  "Become a member https://hackerdojo.com",
-  "Give at https://givebutter.com/growhackerdojo",
-  "Attend events https://www.meetup.com/hackerdojo",
-  "Watch, like, and subscribe https://www.youtube.com/HackerDojo",
-];
-
-qrcodeurl = "https://givebutter.com/growhackerdojo"
-
-
+ // index, after, pixel, welcome // switch to true at end of talks to show after.html

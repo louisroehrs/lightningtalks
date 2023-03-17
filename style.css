@@ -1,16 +1,18 @@
       @font-face {
           font-family: "HackerDojoFont";
-          src: url("./fonts/whitney-medium.woff");
+          src: url("./fonts%2Fwhitney-medium.woff?alt=media&token=8133c835-e280-4b0d-977d-fec892aba96e");
       }
+
 
       @font-face {
           font-family: "Horizon";
-          src: url("./fonts/horizon.c7c834b7fe209bdc0a30119a6b1d26ae.b3ebf62f8ff8ae950dea860d56c49d1b.woff2");
+          src: url("./fonts%2Fhorizon.c7c834b7fe209bdc0a30119a6b1d26ae.b3ebf62f8ff8ae950dea860d56c49d1b.woff2?alt=media&token=15a86321-1806-4255-92fc-ffaf461973be");
       }
+
 
       @font-face {
           font-family: "Lightning";
-          src: url("./fonts/Edo_new14539556727599266484.788b49731d86.2a24fe76e95bd0389c47556fa84e15d8.woff2");
+          src: url("./fonts%2FEdo_new14539556727599266484.788b49731d86.2a24fe76e95bd0389c47556fa84e15d8.woff2?alt=media&token=b4378efc-6930-4f06-9265-cd25889b366c");
       }
 
       BODY {
@@ -104,8 +106,9 @@
           margin-bottom:20px;
       }
 
+
       #bolt {
-          background-image: url('./assets/boltbig.png');
+          background-image: url('./assets%2Fboltbig.png?alt=media&token=5db4aac0-3acf-4bef-adf5-3b7b47f9ac22');
           background-repeat: no-repeat;
           background-size: contain;
           position:absolute;
@@ -116,7 +119,7 @@
       }
 
       #mic {
-          background-image: url('./assets/mic.png');
+          background-image: url('./assets%2Fmic.png?alt=media&token=77b0a668-694f-42fb-92fc-52b8de8b2955');
           background-repeat: no-repeat;
           position:absolute;
           left:350px;

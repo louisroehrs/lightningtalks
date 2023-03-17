@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <script language="JavaScript" src="./lineup.js?alt=media&token=48714a43-e349-4871-85b7-f346f663bcad" >
+    <script language="JavaScript" src="lineup.js" >
     </script>
     
     <style>
@@ -97,11 +97,11 @@
         
         <div class="spacer">&nbsp;</div>
         <div class="title">
-           Welcome!
+           Lightning Talks
         </div>
         <div minHeight=20></div>
         <div>
-          Thank you for visiting HackerDojo!
+          Thank you for coming tonight!
         </div>
         <div class="spacer">&nbsp;</div>
         <div>
@@ -118,7 +118,7 @@
 
     
       <div class="right">
-        <div class="lineup">Support the Dojo and keep the spirit of the valley alive.</div>
+        <div class="lineup">Support the dojo and keep the spirit of the valley alive.</div>
         <div class="largelineheight" id="list">
         </div>
       </div>
@@ -128,10 +128,6 @@
     
     <script language="JavaScript">
 
-      if (showpage === "index" || showpage === "after" || showpage === "pixel") {
-        location.href = pages[showpage];
-      }
-
       (function listTalks() {
         engage.map( (method,i) => {
           const p = document.createElement("p");
@@ -139,8 +135,7 @@
           document.getElementById("list").append(p);
         })
       })();
-
-      setTimeout(() => location.reload() , 1000*30);
+                 
     </script>
     
 
