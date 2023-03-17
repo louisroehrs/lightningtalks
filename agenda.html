@@ -91,7 +91,7 @@
           .then(response => response.json())
           .then(data => {
             if ( data.showpage === "after" || data.showpage === "pixel" || data.showpage === "welcome" ) {
-              location.href = data.pages[data.showpage];
+              location.href = pages[data.showpage];
             }
             console.log(data);
             document.getElementById("hosts").innerText = data.hosts;

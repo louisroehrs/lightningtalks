@@ -2,25 +2,24 @@
 
 <html>
   <head>
-    <script language="JavaScript" src="./lineup.js">
-    </script>
 
-
-    <script language="JavaScript" src="./lineup.js?alt=media&token=48714a43-e349-4871-85b7-f346f663bcad"> </script>
-
-    <link href="https://firebasestorage.googleapis.com/v0/b/donorable-372023.appspot.com/o/style.css?alt=media&token=427dceaf-f727-4597-a09e-89aff7e76467" rel="stylesheet"/>
+      <link href="https://firebasestorage.googleapis.com/v0/b/donorable-372023.appspot.com/o/style.css?alt=media&token=427dceaf-f727-4597-a09e-89aff7e76467" rel="stylesheet"/>
 
       <script>
         let qrcodeurl = "https://givebutter.com/growhackerdojo";
 
         let pages =  {
           "index" : "./index.html?alt=media&token=9151d217-caf6-44d5-8066-70d3b45b3654",
+          "agenda" : "./agenda.html?alt=media&token=c94eadbd-65f8-4817-a4df-3e321612d07d",
           "after" : "./after.html?alt=media&token=59344ded-8cbb-4e39-b3e6-72719c436c9e",
           "welcome": "./welcome.html?alt=media&token=6f22f023-5615-4acb-9a86-c6dda182a24c",
           "pixel" : "./pixel.html?alt=media&token=ac1bbe00-a0f5-4f5d-8603-3c6231eaa38f"
         };
 
       </script>
+      <style>
+         
+      </style>
 
   </head>
 
@@ -50,8 +49,8 @@
             document.write("<img src='https://chart.googleapis.com/chart?cht=qr&chl=" + qrcodeurl + "&chs=180x180&choe=UTF-8&chld=L|2'>")
           </script>
         </div>
-        <div class="spacer">&nbsp;</div>
-        <div class="spacer">&nbsp;</div>
+          <div class="spacer">&nbsp;</div>
+          <div class="spacer">&nbsp;</div>
         <div class="hdlogo"><img src="./assets%2Flogo_tori_white_360.png?alt=media&token=93286ec9-bc91-4056-972f-77e1c14a0b69" width="300" /></div>
       </div>
 
@@ -60,13 +59,10 @@
         <div class="spacer">&nbsp;</div>
         <div class="lineup">Support the dojo and keep the spirit of the valley alive.</div>
         <div class="whitebar"></div>
-        <div class="largelineheight" id="list">
-        </div>
+        <div class="largelineheight" id="list"></div>
         <div class="spacer">&nbsp;</div>
         <div class="spacer">&nbsp;</div>
-
       </div>
-
     </div>
 
 
@@ -74,19 +70,17 @@
 
 
       function fetchJSON() {
-        fetch("./lineup.js?alt=media&token=48714a43-e349-4871-85b7-f346f663bcad")
+        fetch("./lineup.json?alt=media&token=48714a43-e349-4871-85b7-f346f663bcad")
           .then(response => response.json())
           .then(data => {
-            if ( data.showpage === "index" || data.showpage === "pixel" || data.showpage === "welcome" ) {
-              location.href = data.pages[data.showpage];
+            if ( data.showpage === "agenda" || data.showpage === "pixel" || data.showpage === "welcome" ) {
+              location.href = pages[data.showpage];
             }
             console.log(data);
-            document.getElementById("hosts").innerText = data.hosts;
-            document.getElementById("talks").innerText = data.talks;
-
+            listTalks(data);
           })
           .catch(error => {
-            document.getElementById("talks").innerText = "Check fetching lineup";
+            document.getElementById("list").innerText = "Check fetching links";
 
             console.error(error);
           });
@@ -98,14 +92,15 @@
       // reload JSON every 20 seconds
       setInterval(fetchJSON, 20000);
 
-      (function listTalks() {
-        engage.map( (method,i) => {
+      function listTalks(data) {
+        document.getElementById("list").innerText="";
+        data.engage.map( (method,i) => {
           const p = document.createElement("p");
-          p.innerText = engage[i];
+          p.innerText = data.engage[i];
           p.className = "textshadow";
           document.getElementById("list").append(p);
         })
-      })();
+      }
 
     </script>
 

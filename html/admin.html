@@ -7,6 +7,7 @@
       <style>
           body {
               overflow: scroll;
+              font-size:90%;
           }
           .plainFont {
               font-family: "Apple Symbols";
@@ -16,7 +17,7 @@
               margin: 3em;
           }
           input {
-              width: 20em;
+              width: 40em;
               padding: .5em;
               font-size: 1em;
           }
@@ -113,7 +114,7 @@
             let engageItem = document.createElement('li');
             let engageItemInput = document.createElement('input');
             engageItemInput.name = "engage";
-            engageItemInput.placeholder = "Engagement " + i;
+            engageItemInput.placeholder = "Engagement " + (i+1);
             engageItemInput.type = "text";
             engageItemInput.value = data.engage[i] || "";
             engageItem.append(engageItemInput);
@@ -159,7 +160,7 @@
       if (showpage) {
         jsonData["showpage"] = showpage;
       }
-      alert(JSON.stringify(jsonData));
+
       await writeJsonToGcs(jsonData);
     };
 
@@ -169,14 +170,14 @@
 
   </script>
   <form id="lineup-form">
-      <div class="column">
-      <label for="title">Title:</label>
+      <div class="column"><br>
+      <label for="title">Title:</label><BR>
       <input type="text" id="title" name="title"><br><br>
 
-      <label for="subtitle">Subtitle:</label>
+      <label for="subtitle">Subtitle:</label><br>
       <input type="text" id="subtitle" name="subtitle"><br><br>
 
-      <label for="hosts">Hosts:</label>
+      <label for="hosts">Hosts:</label><br>
       <input type="text" id="hosts" name="hosts"><br><br>
 
           <P>Select a page:</P>
