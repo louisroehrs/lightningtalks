@@ -161,6 +161,7 @@
       setInterval(fetchJSON, 20000);
 
       function listTalks(data) {
+        document.getElementById("list").innerHTML = "";
         data.engage.map( (method,i) => {
           const p = document.createElement("p");
           p.innerText = data.engage[i];
