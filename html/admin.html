@@ -1,227 +1,263 @@
 <!doctype html>
 
 <html>
-  <head>
-      <title>Hacker Dojo Lightning Talks Lineup Form</title>
-      <link href="https://firebasestorage.googleapis.com/v0/b/donorable-372023.appspot.com/o/style.css?alt=media&token=427dceaf-f727-4597-a09e-89aff7e76467" rel="stylesheet"/>
-      <style>
-          body {
-              overflow: scroll;
-              font-size:90%;
-          }
+<head>
+    <title>Hacker Dojo Lightning Talks Lineup Form</title>
+    <link href="https://firebasestorage.googleapis.com/v0/b/donorable-372023.appspot.com/o/style.css?alt=media&token=427dceaf-f727-4597-a09e-89aff7e76467"
+          rel="stylesheet"/>
+    <style>
+        body {
+            overflow: scroll;
+            font-size: 90%;
+        }
 
-          form {
-              display:flex;
-              margin: 3em;
-          }
-          input {
-              width: 40em;
-              padding: .5em;
-              font-size: 1em;
-          }
+        form {
+            display: flex;
+            margin: 3em;
+        }
 
-          input[type="radio"] {
-              display: none;
-          }
+        input {
+            width: 40em;
+            padding: .5em;
+            font-size: 1em;
+        }
 
-          input[type="radio"]+label {
-              border: 2px solid transparent;
-              border-radius:5px;
-              padding:5px;
-          }
-          input[type="radio"]:checked+label {
-              border: 2px solid greenyellow;
-              border-radius:5px;
-              padding:5px;
-          }
+        input[type="radio"] {
+            display: none;
+        }
 
-          #mybutton {
-              background-color: greenyellow;
-              color: black;
-              border-radius: 5px;
-          }
+        input[type="radio"] + label {
+            border: 2px solid transparent;
+            border-radius: 5px;
+            padding: 5px;
+        }
 
-          .column {
-              width: 50%;
-          }
-      </style>
-  </head>
+        input[type="radio"]:checked + label {
+            border: 2px solid greenyellow;
+            border-radius: 5px;
+            padding: 5px;
+        }
 
-  <body>
-  <script type="module">
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js'
-    // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
-    import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js'
+        #mybutton {
+            background-color: greenyellow;
+            color: black;
+            border-radius: 5px;
+        }
 
-    // Add Firebase products that you want to use
-    import { getAuth } from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js'
-    import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js'
-    import { getStorage, ref, uploadString } from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-storage.js'
+        .column {
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body>
+<script type="module">
+  import {initializeApp} from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js'
+  // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+  import {getAnalytics} from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js'
+
+  // Add Firebase products that you want to use
+  import {getAuth} from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js'
+  import {getFirestore} from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js'
+  import {getStorage, ref, uploadString} from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-storage.js'
 
 
+  // These keys are for this particular app only
+  const firebaseConfig = {
+    apiKey: "AIzaSyC642CGxCbvhBPNssbLeam3kPJh4h5x_Nc",
+    authDomain: "donorable-372023.firebaseapp.com",
+    projectId: "donorable-372023",
+    storageBucket: "donorable-372023.appspot.com",
+    messagingSenderId: "227877002530",
+    appId: "1:227877002530:web:044e7d1b8e09f8509c997b",
+    measurementId: "G-FFRZJ88FR9"
+  };
 
-    // These keys are for this particular app only
-    const firebaseConfig = {
-      apiKey: "AIzaSyC642CGxCbvhBPNssbLeam3kPJh4h5x_Nc",
-      authDomain: "donorable-372023.firebaseapp.com",
-      projectId: "donorable-372023",
-      storageBucket: "donorable-372023.appspot.com",
-      messagingSenderId: "227877002530",
-      appId: "1:227877002530:web:044e7d1b8e09f8509c997b",
-      measurementId: "G-FFRZJ88FR9"
-    };
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const storage = getStorage(app);
+  const storageRef = ref(storage, 'lineup.json');
+  const form = document.getElementById("lineup-form");
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const storage = getStorage(app);
-    const storageRef = ref(storage, 'lineup.json');
-    const form = document.getElementById("lineup-form");
+  // Raw string is the default if no format is provided
 
-    // Raw string is the default if no format is provided
+  async function fetchJSON() {
+    let formData = new FormData(form);
+    fetch("lineup.json?alt=media&token=48714a43-e349-4871-85b7-f346f663bcad")
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        form.hosts.value = data.hosts || "";
+        form.title.value = data.title || "";
+        form.subtitle.value = data.subtitle || "";
 
-    async function fetchJSON() {
-      let formData = new FormData(form);
-      fetch("lineup.json?alt=media&token=48714a43-e349-4871-85b7-f346f663bcad")
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-          form.hosts.value = data.hosts || "";
-          form.title.value = data.title || "";
-          form.subtitle.value = data.subtitle || "";
+        if (!data.showpage) data.showpage = "agenda";
 
-          if (!data.showpage) data.showpage = "agenda";
+        document.getElementById("agenda").checked = false;
+        document.getElementById("after").checked = false;
+        document.getElementById(data.showpage).checked = true;
+        document.getElementById("talklist").innerText = "";
+        document.getElementById("engagelist").innerText = "";
+        document.getElementById("memberbenefitlist").innerText = "";
 
-          document.getElementById("agenda").checked = false;
-          document.getElementById("after").checked = false;
-          document.getElementById(data.showpage).checked =true;
-          document.getElementById("talklist").innerText = "";
-          document.getElementById("engagelist").innerText = "";
-          for (let i = 0; i < 10; i++) {
-            let talkItem = document.createElement('li');
-            let talkItemInput = document.createElement('input');
-            talkItemInput.name = "talks";
-            talkItemInput.placeholder = "Talk " + (i+1);
-            talkItemInput.type = "text";
-            talkItemInput.value = data.talks[i] || "";
-            talkItem.append(talkItemInput);
-            document.getElementById("talklist").append(talkItem);
-          }
+        for (let i = 0; i < 10; i++) {
+          let talkItem = document.createElement('li');
+          let talkItemInput = document.createElement('input');
+          talkItemInput.name = "talks";
+          talkItemInput.placeholder = "Talk " + (i + 1);
+          talkItemInput.type = "text";
+          talkItemInput.value = data.talks[i] || "";
+          talkItem.append(talkItemInput);
+          document.getElementById("talklist").append(talkItem);
+        }
 
-          for (let i = 0; i < 5; i++) {
-            let engageItem = document.createElement('li');
-            let engageItemInput = document.createElement('input');
-            engageItemInput.name = "engage";
-            engageItemInput.placeholder = "Engagement " + (i+1);
-            engageItemInput.type = "text";
-            engageItemInput.value = data.engage[i] || "";
-            engageItem.append(engageItemInput);
-            document.getElementById("engagelist").append(engageItem);
-          }
-        })
+        for (let i = 0; i < 5; i++) {
+          let engageItem = document.createElement('li');
+          let engageItemInput = document.createElement('input');
+          engageItemInput.name = "engage";
+          engageItemInput.placeholder = "Engagement " + (i + 1);
+          engageItemInput.type = "text";
+          engageItemInput.value = data.engage[i] || "";
+          engageItem.append(engageItemInput);
+          document.getElementById("engagelist").append(engageItem);
+        }
+
+        for (let i = 0; i < 10; i++) {
+          let benefitItem = document.createElement('li');
+          let benefitItemInput = document.createElement('input');
+          benefitItemInput.name = "memberbenefits";
+          benefitItemInput.placeholder = "Benefit " + (i + 1);
+          benefitItemInput.type = "text";
+          benefitItemInput.value = data.memberbenefits[i] || "";
+          benefitItem.append(benefitItemInput);
+          document.getElementById("memberbenefitlist").append(benefitItem);
+        }
+
+
+      })
 //        .catch(error => {
 //              document.getElementById("talks").innerText = "Check fetching lineup";
 
-          //console.error(error);
+    //console.error(error);
 //        });
+  }
+
+  // fetch JSON initially
+  fetchJSON();
+
+  async function writeJsonToGcs(jsonData) {
+    console.log("WJTG" + JSON.stringify(jsonData));
+    uploadString(storageRef, JSON.stringify(jsonData)).then(
+      (snapshot) => {
+        console.log('Uploaded a raw string!' + JSON.stringify(snapshot));
+      }
+    );
+  };
+
+
+  async function saveForm() {
+    const formData = new FormData(form);
+    const jsonData = {};
+
+    for (const [key, value] of formData.entries()) {
+      if (key === "talks" || key === "engage" || key === "memberbenefits") {
+        if (!jsonData.hasOwnProperty(key)) {
+          jsonData[key] = [];
+        }
+        jsonData[key].push(value);
+      } else {
+        jsonData[key] = value;
+      }
     }
 
-      // fetch JSON initially
-    fetchJSON();
+    const showpage = formData.get("showpage");
+    if (showpage) {
+      jsonData["showpage"] = showpage;
+    }
 
-    async function writeJsonToGcs(jsonData) {
-      console.log("WJTG" + JSON.stringify(jsonData));
-      uploadString(storageRef, JSON.stringify(jsonData)).then(
-        (snapshot) => {
-          console.log('Uploaded a raw string!' + JSON.stringify(snapshot));
-        }
-      );
-    };
+    await writeJsonToGcs(jsonData);
+  };
 
+  window.onload = (event) => {
+    document.getElementById("mybutton").onclick = saveForm;
+  }
 
-    async function saveForm() {
-      const formData = new FormData(form);
-      const jsonData = {};
+</script>
+<form id="lineup-form">
+    <div class="column"><br>
+        <img src="./assets%2Flogo_tori_white_360.png?alt=media&token=93286ec9-bc91-4056-972f-77e1c14a0b69" width="300"/>
+        <BR><BR><BR>
+        <label for="title">Title:</label><BR>
+        <input type="text" id="title" name="title"><br><br>
 
-      for (const [key, value] of formData.entries()) {
-        if (key === "talks" || key === "engage") {
-          if (!jsonData.hasOwnProperty(key)) {
-            jsonData[key] = [];
-          }
-          jsonData[key].push(value);
-        } else {
-          jsonData[key] = value;
-        }
-      }
+        <label for="subtitle">Subtitle:</label><br>
+        <input type="text" id="subtitle" name="subtitle"><br><br>
 
-      const showpage = formData.get("showpage");
-      if (showpage) {
-        jsonData["showpage"] = showpage;
-      }
+        <label for="hosts">Hosts:</label><br>
+        <input type="text" id="hosts" name="hosts"><br><br>
 
-      await writeJsonToGcs(jsonData);
-    };
+        <P>Select a page:</P>
+        <input type="radio" id="agenda" name="showpage" value="agenda">
+        <label for="agenda">LT Agenda</label>
+        <input type="radio" id="after" name="showpage" value="after">
+        <label for="after">LT After</label>
+        <BR><BR>
+        <input type="radio" id="support" name="showpage" value="support">
+        <label for="support">HD Support</label>
+        <input type="radio" id="pixel" name="showpage" value="pixel">
+        <label for="pixel">HD Pixels</label>
+        <input type="radio" id="benefitbutton" name="showpage" value="benefitbutton">
+        <label for="benefitbutton">HD Member Benefits</label>
 
-     window.onload = (event) => {
-         document.getElementById("mybutton").onclick=saveForm;
-     }
+        <br><br>
 
-  </script>
-  <form id="lineup-form">
-      <div class="column"><br>
-          <img src="./assets%2Flogo_tori_white_360.png?alt=media&token=93286ec9-bc91-4056-972f-77e1c14a0b69" width="300" />
-          <BR><BR><BR>
-      <label for="title">Title:</label><BR>
-      <input type="text" id="title" name="title"><br><br>
+        <input type="button" id="mybutton" value="Submit">
 
-      <label for="subtitle">Subtitle:</label><br>
-      <input type="text" id="subtitle" name="subtitle"><br><br>
+    </div>
+    <div class="column">
+        <label for="talklist">Talks:</label>
+        <ol id="talklist">
+            <li><input type="text" name="talks" placeholder="Talk 1"></li>
+            <li><input type="text" name="talks" placeholder="Talk 2"></li>
+            <li><input type="text" name="talks" placeholder="Talk 3"></li>
+            <li><input type="text" name="talks" placeholder="Talk 4"></li>
+            <li><input type="text" name="talks" placeholder="Talk 5"></li>
+            <li><input type="text" name="talks" placeholder="Talk 6"></li>
+            <li><input type="text" name="talks" placeholder="Talk 7"></li>
+            <li><input type="text" name="talks" placeholder="Talk 8"></li>
+            <li><input type="text" name="talks" placeholder="Talk 9"></li>
+            <li><input type="text" name="talks" placeholder="Talk 10"></li>
+        </ol>
+        <br>
 
-      <label for="hosts">Hosts:</label><br>
-      <input type="text" id="hosts" name="hosts"><br><br>
+        <label for="engagelist">Engagements:</label>
+        <ol id="engagelist">
+            <li><input type="text" name="engage" placeholder="Engagement 1"></li>
+            <li><input type="text" name="engage" placeholder="Engagement 2"></li>
+            <li><input type="text" name="engage" placeholder="Engagement 3"></li>
+            <li><input type="text" name="engage" placeholder="Engagement 4"></li>
+            <li><input type="text" name="engage" placeholder="Engagement 5"></li>
+        </ol>
+        <br>
 
-          <P>Select a page:</P>
-          <input type="radio" id="agenda" name="showpage" value="agenda">
-          <label for="agenda">LT Agenda</label>
-          <input type="radio" id="after" name="showpage" value="after">
-          <label for="after">LT After</label>
-          <input type="radio" id="support" name="showpage" value="support">
-          <label for="support">HD Support</label>
-          <input type="radio" id="pixel" name="showpage" value="pixel">
-          <label for="pixel">HD Pixels</label>
+        <label for="memberbenefitlist">Member Benefits:</label>
+        <ol id="memberbenefitlist">
+            <li><input type="text" name="memberbenefits" placeholder="Benefit 1"></li>
+            <li><input type="text" name="memberbenefits" placeholder="Benefit 2"></li>
+            <li><input type="text" name="memberbenefits" placeholder="Benefit 3"></li>
+            <li><input type="text" name="memberbenefits" placeholder="Benefit 4"></li>
+            <li><input type="text" name="memberbenefits" placeholder="Benefit 5"></li>
+            <li><input type="text" name="memberbenefits" placeholder="Benefit 6"></li>
+            <li><input type="text" name="memberbenefits" placeholder="Benefit 7"></li>
+            <li><input type="text" name="memberbenefits" placeholder="Benefit 8"></li>
+            <li><input type="text" name="memberbenefits" placeholder="Benefit 9"></li>
+            <li><input type="text" name="memberbenefits" placeholder="Benefit 10"></li>
+        </ol>
+        <br>
+    </div>
+</form>
 
-          <br><br>
-
-          <input type="button" id="mybutton"  value="Submit">
-
-      </div>
-      <div class="column">
-      <label for="talklist">Talks:</label>
-      <ol id="talklist">
-          <li><input type="text" name="talks" placeholder="Talk 1"></li>
-          <li><input type="text" name="talks" placeholder="Talk 2"></li>
-          <li><input type="text" name="talks" placeholder="Talk 3"></li>
-          <li><input type="text" name="talks" placeholder="Talk 4"></li>
-          <li><input type="text" name="talks" placeholder="Talk 5"></li>
-          <li><input type="text" name="talks" placeholder="Talk 6"></li>
-          <li><input type="text" name="talks" placeholder="Talk 7"></li>
-          <li><input type="text" name="talks" placeholder="Talk 8"></li>
-          <li><input type="text" name="talks" placeholder="Talk 9"></li>
-          <li><input type="text" name="talks" placeholder="Talk 10"></li>
-      </ol><br>
-
-      <label for="engagelist">Engagements:</label>
-      <ol id="engagelist">
-          <li><input type="text" name="engage" placeholder="Engagement 1"></li>
-          <li><input type="text" name="engage" placeholder="Engagement 2"></li>
-          <li><input type="text" name="engage" placeholder="Engagement 3"></li>
-          <li><input type="text" name="engage" placeholder="Engagement 4"></li>
-          <li><input type="text" name="engage" placeholder="Engagement 5"></li>
-      </ol><br>
-
-  </div>
-  </form>
-
-  </body>
-  </html>
+</body>
+</html>
 
 

@@ -50,7 +50,7 @@
           height:65px;
       }
       .largelineheight {
-          line-height: 1.5
+          line-height: 0.9
       }
       .countdown {
 
@@ -114,7 +114,7 @@
 
 
       <div class="right">
-        <div class="lineup">Support the dojo and keep the spirit of the valley alive.</div>
+        <div class="lineup">Benefits of Being a Member:</div>
         <div class="largelineheight" id="list">
         </div>
       </div>
@@ -129,7 +129,7 @@
         fetch("./lineup.json?alt=media&token=48714a43-e349-4871-85b7-f346f663bcad")
           .then(response => response.json())
           .then(data => {
-            if ( data.showpage !==  "support" ) {
+            if ( data.showpage !==  "benefitbutton" ) {
               location.href = pages[data.showpage];
             }
             document.getElementById("title").innerText = data.title || "";
@@ -150,15 +150,16 @@
 
       function listTalks(data) {
         document.getElementById("list").innerHTML = "";
-        data.engage.map( (method,i) => {
-          const p = document.createElement("p");
-          p.innerText = data.engage[i];
-          document.getElementById("list").append(p);
+        data.memberbenefits.map( (method,i) => {
+          if (data.memberbenefits[i].trim().length > 0) {
+            const p = document.createElement("p");
+            p.innerText = data.memberbenefits[i];
+            document.getElementById("list").append(p);
+          }
         })
       };
 
     </script>
-
 
   </body>
 </html>
