@@ -44,6 +44,12 @@
             border-radius: 5px;
         }
 
+        #myresetbutton {
+            background-color: red;
+            color: black;
+            border-radius: 5px;
+        }
+
         .column {
             width: 50%;
         }
@@ -155,6 +161,23 @@
   };
 
 
+  async function resetJson() {
+    fetch("lineup-backup.json?alt=media&token=2bec0e51-2edc-4f30-a387-9e329c979593")
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        writeJsonToGcs(data);
+      });
+  }
+
+  async function resetAreYouSure() {
+    if (confirm("Resetting the page will restore the member benefits and the engagement links to their default and clear out the talk agenda.  Would you like to continue to reset the page?")) {
+      await resetJson();
+      alert("Page reset");
+      await fetchJSON();
+    }
+  }
+
   async function saveForm() {
     const formData = new FormData(form);
     const jsonData = {};
@@ -180,12 +203,13 @@
 
   window.onload = (event) => {
     document.getElementById("mybutton").onclick = saveForm;
+    document.getElementById("myresetbutton").onclick = resetAreYouSure;
   }
 
 </script>
 <form id="lineup-form">
     <div class="column"><br>
-        <img src="./assets%2Flogo_tori_white_360.png?alt=media&token=93286ec9-bc91-4056-972f-77e1c14a0b69" width="300"/>
+        <img src="assets%2Flogo_regular_white_text.png?alt=media&token=262d13ab-1aa2-4cb1-b339-9eb7dc9ee8ea" width="300"/>
         <BR><BR><BR>
         <label for="title">Title:</label><BR>
         <input type="text" id="title" name="title"><br><br>
@@ -212,6 +236,9 @@
         <br><br>
 
         <input type="button" id="mybutton" value="Submit">
+
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+        <input type="button" id="myresetbutton" value="Reset Page to Defaults...">
 
     </div>
     <div class="column">

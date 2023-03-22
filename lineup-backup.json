@@ -1,0 +1,33 @@
+{
+  "showpage" : "benefitbutton",
+
+  "talks" : [
+    "Signup begins at 6:15pm"
+  ],
+
+  "hosts" : "the Host",
+
+  "engage" : [
+    "Become a member https://hackerdojo.com",
+    "Give at https://givebutter.com/growhackerdojo",
+    "Attend events https://www.meetup.com/hackerdojo",
+    "Watch, like, and subscribe https://www.youtube.com/HackerDojo",
+    "Follow us on the 'gram @hackerdojo"
+  ],
+
+  "memberbenefits":[
+    "Midnights at the Dojo: 24x7 Access",
+    "3D Printing",
+    "Electronics Lab",
+    "ThunderLaser Lab",
+    "Podcast Studio",
+    "Free Coffee and Tea",
+    "Attend Events for Free or Discount",
+    "Magical Serendipity",
+    "A Ticket To Excellence",
+    ""
+  ]
+}
+
+
+
