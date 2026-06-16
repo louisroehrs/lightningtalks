@@ -1,55 +1,48 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html>
   <head>
-    <link href="style.css" rel="stylesheet"/>
-    <script language="JavaScript" src="./lineup.json?alt=media&token=48714a43-e349-4871-85b7-f346f663bcad" >
-    </script>
-
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script src="talks.js"></script>
+  
     <style>
 
       BODY {
-          font-family: Arial, Helvetica, helvetica;
-          font-size: 48px;
-          margin-left:110px;
-          margin-right:60px;
-          margin-top:100px;
-          background-color:black;
-          color:white;
+        font-family: Arial, Helvetica, helvetica;
+        font-size: 48px;
+        margin-top:100px;
+        background-color:black;
+        color:white;
+        width: 100%
       }
+      
       .title {
-          font-size:190%;
+        font-size:190%;
       }
-
+      
       .columns {
-          display:flex;
-          flex-direction: columns;
-          justify-content: space-between;
-          grid-gap:10%;
+        display:flex;
+        flex-direction: columns;
+        gap: 30px;
       }
+      
       .left, .right {
-          text-align: left;
-      }
-      .left {
-          width:40%
-      }
-      .right {
-          width:60%
-      }
-      .lineup {
-          margin-left:-15px;
-          margin-top:15px;
+        text-align: left;
+        width: 40%;
+        padding-left: 100px;
       }
       .spacer {
-          height:65px;
+        height:65px;
       }
       .largelineheight {
-          line-height: 1.5
+        line-height: 1.5
       }
-
-      </style>
+      
+    </style>
   </head>
-
+  
   <body>
     <div class="columns">
       <div class="left">
@@ -96,47 +89,25 @@
           Thank you for visiting HackerDojo!
         </div>
         <div class="spacer">&nbsp;</div>
+        <div class="spacer">&nbsp;</div>
+        <div class="spacer">&nbsp;</div>
+
         <div>
           Find us at https://hackerdojo.org<BR/>
         </div>
-        <div class="spacer">&nbsp;</div>
-        <div class="spacer">&nbsp;</div>
-        <div>
-          <script language="Javascript">
-            document.write("<img src='https://chart.googleapis.com/chart?cht=qr&chl=" + qrcodeurl + "&chs=180x180&choe=UTF-8&chld=L|2'>")
-          </script>
-        </div>
       </div>
 
-
       <div class="right">
+        <br/><br/><br/>        <br/>
         <div class="lineup">Support the Dojo and keep the spirit of the valley alive.</div>
-        <div class="largelineheight" id="list">
-        </div>
+        <BR><BR>
+        <canvas id="qrcodecanvas"></canvas>
+        <div id="qrcodetext">https://givebutter.com/hacker-dojo</div>
+
+        <div class="largelineheight" id="list"></div>
       </div>
 
     </div>
 
-
-    <script language="JavaScript">
-
-      if (showpage === "index" || showpage === "after" || showpage === "pixel") {
-        location.href = pages[showpage];
-      }
-
-      (function listTalks() {
-        engage.map( (method,i) => {
-          const p = document.createElement("p");
-          p.innerText = engage[i];
-          document.getElementById("list").append(p);
-        })
-      })();
-
-      setTimeout(() => location.reload() , 1000*30);
-    </script>
   </body>
 </html>
-
-
-
-

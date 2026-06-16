@@ -1,8 +1,10 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html>
   <head>
-      <link href="style.css" rel="stylesheet"/>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet"/>
+    <script src="talks.js"></script>
   </head>
 
   <body>
@@ -22,7 +24,7 @@
         <div class="spacer">&nbsp;</div>
         <div class="functional">
           Networking 6:00 - 7:00pm<BR/>
-          Talks start<span id="countdown"></span><BR>at 7:00pm<BR/>
+          Talks start<span id="countdown"></span><BR/>
           Discussions until 9:00pm<BR/>
         </div>
         <div class="spacer">&nbsp;</div>
@@ -56,70 +58,7 @@
     <script language="JavaScript">
 
 
-      function listTalks(talks) {
-        document.getElementById("talks").innerHTML ="";
-        talks.map( (talk,i) => {
-          if (talks[i].trim().length > 0) {
-            const li = document.createElement("li");
-            li.innerText = talks[i];
-            document.getElementById("talks").append(li);
-          }
-        })
-      };
-
-
-      function fetchJSON() {
-        //        fetch("lineup.json")
-        fetch("https://raw.githubusercontent.com/louisroehrs/lightningtalks/refs/heads/main/lineup.json")
-          .then(response => response.json())
-          .then(data => {
-            if ( data.showpage !== "agenda" ) {
-//              location.href = data.pages[data.showpage];
-            }
-            console.log(data);
-            document.getElementById("hosts").innerText = data.hosts;
-            listTalks(data.talks);
-          })
-          .catch(error => {
-            document.getElementById("talks").innerText = "Check fetching lineup";
-
-            console.error(error);
-          });
-      }
-
-      // fetch JSON initially
-      fetchJSON();
-
-      // reload JSON every 20 seconds
-      setInterval(fetchJSON, 5000);
-
-      function updateTime() {
-        const eventStart = "19:00";
-        const s = eventStart.split(':');
-        const startTime = new Date();
-        startTime.setHours(s[0]);
-        startTime.setMinutes(s[1]);
-
-        const now = new Date();
-
-        timeLeft = startTime - now;
-        
-        minutes =  Math.ceil(timeLeft / 1000 / 60);
-
-        document.getElementById("currentTime").innerText = minutes  + "minutes";
-        document.getElementById("talkdate").innerText = now.toDateString();
-
-        if ( minutes > 0) {
-
-          document.getElementById("countdown").innerText=" in " + minutes + " minutes ";
-          setTimeout(updateTime,8);
-        } else {
-          document.getElementById("countdown").innerText ="ing now ";
-        }
-      }
-
-      setTimeout(updateTime, 1);
-
+      
     </script>
   </body>
 </html>

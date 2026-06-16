@@ -1,6 +1,5 @@
 {
-  "showpage" : "agenda",
-
+  "showpage": "pixel",
   "talks" : [
     "Magic code writing",
     "Cool stuff on old macs",
@@ -22,7 +21,8 @@
     "index" : "./index.html",
     "after" : "./after.html",
     "welcome": "./welcome.html",
-    "pixel" : "./pixel.html"
+    "pixel" : "./pixel.html",
+    "agenda" : "./agenda.html"
   }
 }
 
