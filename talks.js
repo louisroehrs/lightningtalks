@@ -26,12 +26,10 @@ function listTalks(talks) {
 };
 
 function fetchJSON() {
-  // fetch("lineup.json")
-  fetch("https://raw.githubusercontent.com/louisroehrs/lightningtalks/refs/heads/main/lineup.json")
+  fetch("lineup.json")
     .then(response => response.json())
     .then(respdata => {
       data = respdata;
-      debugger;
       if (!location.href.includes(data.showpage)) {
         location.href = data.pages[data.showpage];
       }
@@ -58,7 +56,7 @@ function fetchJSON() {
 fetchJSON();
 
 // reload JSON every 20 seconds
-setInterval(fetchJSON, 20000);
+setInterval(fetchJSON, 4000);
 
 function updateTime() {
   if ( !document.getElementById("currentTime")) {
@@ -81,11 +79,10 @@ function updateTime() {
   document.getElementById("talkdate").innerText = now.toDateString();
   
   if ( minutes > 0) {
-    
-    document.getElementById("countdown").innerHTML=" in " + minutes + " minutes <BR>at 7:00pm";
+    document.getElementById("countdown").innerHTML = " in " + minutes + " minutes <BR>at 7:00pm";
     setTimeout(updateTime,1000);
   } else {
-    document.getElementById("countdown").innerHTML ="ing now <BR>";
+    document.getElementById("countdown").innerHTML = "ing now <BR>";
   }
 }
 

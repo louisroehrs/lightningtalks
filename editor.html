@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lineup Editor</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: #fff;
+      letter-spacing: 0.04em;
+    }
+
+    section {
+      background: #16213e;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    section h2 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #888;
+      margin-bottom: 1rem;
+    }
+
+    /* Showpage buttons */
+    .page-buttons {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .page-btn {
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      border: 2px solid #334;
+      background: #0f3460;
+      color: #ccc;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .page-btn:hover { border-color: #e94560; color: #fff; }
+    .page-btn.active { border-color: #e94560; background: #e94560; color: #fff; font-weight: 600; }
+
+    /* Hosts input */
+    input[type="text"] {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      background: #0f3460;
+      border: 2px solid #334;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    input[type="text"]:focus { outline: none; border-color: #e94560; }
+
+    /* List editors */
+    .list-editor { display: flex; flex-direction: column; gap: 0.5rem; }
+
+    .list-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #0f3460;
+      border-radius: 6px;
+      padding: 0.4rem 0.6rem;
+      cursor: grab;
+      border: 2px solid transparent;
+      transition: border-color 0.15s;
+    }
+
+    .list-item.dragging { opacity: 0.4; }
+    .list-item.drop-before { border-top: 2px solid #e94560; }
+    .list-item.drop-after  { border-bottom: 2px solid #e94560; }
+
+    .drag-handle {
+      color: #556;
+      font-size: 1.1rem;
+      cursor: grab;
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    .list-item input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: #e0e0e0;
+      font-size: 0.95rem;
+      padding: 0.2rem;
+    }
+
+    .list-item input:focus { outline: none; color: #fff; }
+
+    .delete-btn {
+      background: none;
+      border: none;
+      color: #556;
+      font-size: 1.1rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      line-height: 1;
+      padding: 0 0.2rem;
+      transition: color 0.15s;
+    }
+
+    .delete-btn:hover { color: #e94560; }
+
+    .add-btn {
+      margin-top: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: none;
+      border: 2px dashed #334;
+      border-radius: 6px;
+      color: #888;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.15s;
+      align-self: flex-start;
+    }
+
+    .add-btn:hover { border-color: #e94560; color: #e94560; }
+
+    /* Pages section */
+    .pages-toggle {
+      background: none;
+      border: none;
+      color: #556;
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .pages-toggle:hover { color: #e94560; }
+
+    .pages-grid {
+      display: none;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .pages-grid.visible { display: flex; }
+
+    .page-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .page-row label {
+      width: 5rem;
+      font-size: 0.8rem;
+      color: #888;
+      flex-shrink: 0;
+    }
+
+    /* Action bar */
+    .action-bar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .save-btn {
+      padding: 0.7rem 2rem;
+      background: #e94560;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .save-btn:hover { background: #c73652; }
+    .save-btn:disabled { background: #555; cursor: default; }
+
+    .status {
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    .status.ok { color: #4caf50; }
+    .status.err { color: #e94560; }
+
+  </style>
+</head>
+<body>
+
+<h1>Lineup Editor</h1>
+
+<div class="action-bar" style="margin-bottom:1.5rem; margin-top:0;">
+  <button class="save-btn" id="saveBtn" onclick="save()">Update</button>
+  <span class="status" id="status"></span>
+</div>
+
+<section>
+  <h2>Show Page</h2>
+  <div class="page-buttons" id="pageButtons"></div>
+</section>
+
+<section>
+  <h2>Hosts</h2>
+  <input type="text" id="hosts" placeholder="e.g. Louis">
+</section>
+
+<section>
+  <h2>Talks</h2>
+  <div class="list-editor" id="talksList"></div>
+  <button class="add-btn" onclick="addItem('talksList', 'talks')">+ Add talk</button>
+</section>
+
+<section>
+  <h2>Engage</h2>
+  <div class="list-editor" id="engageList"></div>
+  <button class="add-btn" onclick="addItem('engageList', 'engage')">+ Add item</button>
+</section>
+
+<section>
+  <button class="pages-toggle" onclick="togglePages()">Show page URL map</button>
+  <div class="pages-grid" id="pagesGrid"></div>
+</section>
+
+
+<script>
+let currentData = null;
+let dragSrc = null;
+
+async function load() {
+  setStatus("Loading…");
+  try {
+    const r = await fetch("lineup.json");
+    currentData = await r.json();
+    render();
+    setStatus("");
+  } catch (e) {
+    setStatus("Failed to load: " + e.message, true);
+  }
+}
+
+function render() {
+  const d = currentData;
+
+  // Showpage buttons
+  const btns = document.getElementById("pageButtons");
+  btns.innerHTML = "";
+  Object.keys(d.pages).forEach(key => {
+    const b = document.createElement("button");
+    b.className = "page-btn" + (d.showpage === key ? " active" : "");
+    b.textContent = key;
+    b.onclick = () => {
+      document.querySelectorAll(".page-btn").forEach(x => x.classList.remove("active"));
+      b.classList.add("active");
+      currentData.showpage = key;
+    };
+    btns.appendChild(b);
+  });
+
+  // Hosts
+  document.getElementById("hosts").value = d.hosts || "";
+
+  // Lists
+  renderList("talksList", d.talks, "talks");
+  renderList("engageList", d.engage, "engage");
+
+  // Pages
+  const grid = document.getElementById("pagesGrid");
+  grid.innerHTML = "";
+  Object.entries(d.pages).forEach(([key, val]) => {
+    const row = document.createElement("div");
+    row.className = "page-row";
+    row.innerHTML = `<label>${key}</label><input type="text" value="${val}" oninput="currentData.pages['${key}']=this.value">`;
+    grid.appendChild(row);
+  });
+}
+
+function renderList(containerId, items, field) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = "";
+  items.forEach((text, i) => {
+    el.appendChild(makeItem(text, i, containerId, field));
+  });
+}
+
+function makeItem(text, index, containerId, field) {
+  const div = document.createElement("div");
+  div.className = "list-item";
+  div.draggable = true;
+  div.dataset.index = index;
+  div.dataset.field = field;
+  div.dataset.container = containerId;
+
+  div.innerHTML = `
+    <span class="drag-handle">⠿</span>
+    <input type="text" value="${escHtml(text)}" oninput="currentData['${field}'][${index}]=this.value">
+    <button class="delete-btn" onclick="removeItem('${containerId}','${field}',${index})">✕</button>
+  `;
+
+  function clearDropIndicators() {
+    document.querySelectorAll(".drop-before, .drop-after").forEach(el => {
+      el.classList.remove("drop-before", "drop-after");
+    });
+  }
+
+  function dropPosition(e, el) {
+    const rect = el.getBoundingClientRect();
+    return e.clientY < rect.top + rect.height / 2 ? "before" : "after";
+  }
+
+  div.addEventListener("dragstart", e => {
+    dragSrc = div;
+    div.classList.add("dragging");
+    e.dataTransfer.effectAllowed = "move";
+  });
+  div.addEventListener("dragend", () => {
+    div.classList.remove("dragging");
+    clearDropIndicators();
+  });
+  div.addEventListener("dragover", e => {
+    e.preventDefault();
+    clearDropIndicators();
+    div.classList.add(dropPosition(e, div) === "before" ? "drop-before" : "drop-after");
+  });
+  div.addEventListener("dragleave", clearDropIndicators);
+  div.addEventListener("drop", e => {
+    e.preventDefault();
+    clearDropIndicators();
+    if (!dragSrc || dragSrc === div) return;
+    const f = div.dataset.field;
+    const arr = currentData[f];
+    const from = parseInt(dragSrc.dataset.index);
+    let to = parseInt(div.dataset.index);
+    if (dropPosition(e, div) === "after") to += 1;
+    if (to > from) to -= 1;
+    arr.splice(to, 0, arr.splice(from, 1)[0]);
+    renderList(containerId, arr, f);
+  });
+
+  return div;
+}
+
+function addItem(containerId, field) {
+  currentData[field].push("");
+  renderList(containerId, currentData[field], field);
+  // Focus the new input
+  const items = document.getElementById(containerId).querySelectorAll("input");
+  if (items.length) items[items.length - 1].focus();
+}
+
+function removeItem(containerId, field, index) {
+  currentData[field].splice(index, 1);
+  renderList(containerId, currentData[field], field);
+}
+
+function togglePages() {
+  const g = document.getElementById("pagesGrid");
+  g.classList.toggle("visible");
+  document.querySelector(".pages-toggle").textContent =
+    g.classList.contains("visible") ? "Hide page URL map" : "Show page URL map";
+}
+
+async function save() {
+  currentData.hosts = document.getElementById("hosts").value;
+  document.getElementById("saveBtn").disabled = true;
+  setStatus("Saving…");
+  try {
+    const r = await fetch("lineup.json", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(currentData, null, 2)
+    });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    setStatus("Updated!", false, true);
+  } catch (e) {
+    setStatus("Error: " + e.message, true);
+  } finally {
+    document.getElementById("saveBtn").disabled = false;
+  }
+}
+
+function setStatus(msg, isErr = false, isOk = false) {
+  const el = document.getElementById("status");
+  el.textContent = msg;
+  el.className = "status" + (isErr ? " err" : isOk ? " ok" : "");
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
+}
+
+load();
+</script>
+</body>
+</html>

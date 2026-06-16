@@ -1,30 +1,23 @@
 {
   "showpage": "agenda",
-  "talks" : [
+  "talks": [
+    "Creating not a superfund site",
     "Magic code writing",
-    "Cool stuff on old macs",
-    "Creating not a superfund site"
+    "Cool stuff on old macs"
   ],
-
-  "hosts" : "Louis",
-
-  "engage" : [
+  "hosts": "Louis",
+  "engage": [
     "Become a member https://hackerdojo.com",
     "Give at https://givebutter.com/growhackerdojo",
     "Attend events https://www.meetup.com/hackerdojo",
     "Watch, like, and subscribe https://www.youtube.com/HackerDojo"
   ],
-
-  "qrcodeurl" : "https://givebutter.com/growhackerdojo",
-
-  "pages" : {
-    "index" : "./index.html",
-    "after" : "./after.html",
+  "qrcodeurl": "https://givebutter.com/growhackerdojo",
+  "pages": {
+    "index": "./index.html",
+    "after": "./after.html",
     "welcome": "./welcome.html",
-    "pixel" : "./pixel.html",
-    "agenda" : "./agenda.html"
+    "pixel": "./pixel.html",
+    "agenda": "./agenda.html"
   }
 }
-
-
-
