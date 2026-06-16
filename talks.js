@@ -82,7 +82,7 @@ function updateTime() {
   
   if ( minutes > 0) {
     
-    document.getElementById("countdown").innerText=" in " + minutes + " minutes <BR>at 7:00pm";
+    document.getElementById("countdown").innerHTML=" in " + minutes + " minutes <BR>at 7:00pm";
     setTimeout(updateTime,1000);
   } else {
     document.getElementById("countdown").innerHTML ="ing now <BR>";
