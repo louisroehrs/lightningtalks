@@ -1,5 +1,5 @@
 {
-  "showpage": "support",
+  "showpage": "after",
   "talks": [
     "Magic code writing",
     "Creating not a superfund site",
@@ -13,12 +13,17 @@
     "Watch, like, and subscribe https://www.youtube.com/HackerDojo"
   ],
   "benefits": [
-    "24/7/365 access",
-    "Premium fast wifi",
-    "Access to Silicon Valley's OG founder community",
-    "Free event admission"
+    "Midnights at the Dojo: 24x7 Access",
+    "3D Printing",
+    "Electronics Lab",
+    "ThunderLaser Lab",
+    "Podcast Studio",
+    "Free Coffee and Tea",
+    "Attend Events for Free or Discount",
+    "Magical Serendipity",
+    "A Ticket To Excellence"
   ],
-  "qrcodeurl": "https://givebutter.com/growhackerdojo",
+  "qrcodeurl": "https://www.every.org/hacker-dojo",
   "pages": {
     "agenda": {
       "name": "LT Agenda",
