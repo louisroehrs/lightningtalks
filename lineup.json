@@ -1,23 +1,48 @@
 {
-  "showpage": "agenda",
+  "showpage": "support",
   "talks": [
-    "Creating not a superfund site",
     "Magic code writing",
+    "Creating not a superfund site",
     "Cool stuff on old macs"
   ],
   "hosts": "Louis",
   "engage": [
-    "Become a member https://hackerdojo.com",
-    "Give at https://givebutter.com/growhackerdojo",
+    "Become a member today https://hackerdojo.com",
+    "Give at https://www.every.org/hacker-dojo",
     "Attend events https://www.meetup.com/hackerdojo",
     "Watch, like, and subscribe https://www.youtube.com/HackerDojo"
   ],
+  "benefits": [
+    "24/7/365 access",
+    "Premium fast wifi",
+    "Access to Silicon Valley's OG founder community",
+    "Free event admission"
+  ],
   "qrcodeurl": "https://givebutter.com/growhackerdojo",
   "pages": {
-    "index": "./index.html",
-    "after": "./after.html",
-    "welcome": "./welcome.html",
-    "pixel": "./pixel.html",
-    "agenda": "./agenda.html"
+    "agenda": {
+      "name": "LT Agenda",
+      "page": "./agenda.html"
+    },
+    "after": {
+      "name": "LT Done",
+      "page": "./after.html"
+    },
+    "welcome": {
+      "name": "HD Welcome",
+      "page": "./welcome.html"
+    },
+    "support": {
+      "name": "HD Support",
+      "page": "./support.html"
+    },
+    "memberbenefits": {
+      "name": "HD Member Benefits",
+      "page": "/memberbenefits.html"
+    },
+    "pixel": {
+      "name": "HD Pixel",
+      "page": "./pixel.html"
+    }
   }
 }

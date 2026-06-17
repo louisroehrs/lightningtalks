@@ -89,8 +89,16 @@
     }
 
     .list-item.dragging { opacity: 0.4; }
-    .list-item.drop-before { border-top: 2px solid #e94560; }
-    .list-item.drop-after  { border-bottom: 2px solid #e94560; }
+
+    .drop-line {
+      height: 2px;
+      border-radius: 1px;
+      margin: 1px 0;
+      pointer-events: none;
+      background: transparent;
+    }
+
+    .drop-line.active { background: #e94560; }
 
     .drag-handle {
       color: #556;
@@ -250,6 +258,51 @@
 let currentData = null;
 let dragSrc = null;
 
+const indicator = document.createElement("div");
+indicator.className = "drop-line";
+
+function clearDropLine() {
+  indicator.classList.remove("active");
+  if (indicator.parentNode) indicator.parentNode.removeChild(indicator);
+}
+
+function dropPosition(e, el) {
+  const rect = el.getBoundingClientRect();
+  return e.clientY < rect.top + rect.height / 2 ? "before" : "after";
+}
+
+function commitDrop() {
+  if (!dragSrc || !indicator.parentNode) return;
+  const container = indicator.parentNode;
+  const field = dragSrc.dataset.field;
+  const arr = currentData[field];
+  const from = parseInt(dragSrc.dataset.index);
+
+  // Count list-item siblings before the indicator, excluding the dragged item itself
+  let to = 0;
+  for (const sib of Array.from(container.children)) {
+    if (sib === indicator) break;
+    if (sib.classList.contains("list-item") && sib !== dragSrc) to++;
+  }
+
+  arr.splice(to, 0, arr.splice(from, 1)[0]);
+  renderList(dragSrc.dataset.container, arr, field);
+}
+
+// Handle drop on the containers themselves (catches drops on indicator gaps)
+document.addEventListener("DOMContentLoaded", () => {
+  ["talksList", "engageList"].forEach(id => {
+    const el = document.getElementById(id);
+    el.addEventListener("dragover", e => e.preventDefault());
+    el.addEventListener("drop", e => {
+      e.preventDefault();
+      commitDrop();
+      clearDropLine();
+      dragSrc = null;
+    });
+  });
+});
+
 async function load() {
   setStatus("Loading…");
   try {
@@ -271,11 +324,12 @@ function render() {
   Object.keys(d.pages).forEach(key => {
     const b = document.createElement("button");
     b.className = "page-btn" + (d.showpage === key ? " active" : "");
-    b.textContent = key;
+    b.textContent = d.pages[key].name;
     b.onclick = () => {
       document.querySelectorAll(".page-btn").forEach(x => x.classList.remove("active"));
       b.classList.add("active");
       currentData.showpage = key;
+      save();
     };
     btns.appendChild(b);
   });
@@ -320,44 +374,33 @@ function makeItem(text, index, containerId, field) {
     <button class="delete-btn" onclick="removeItem('${containerId}','${field}',${index})">✕</button>
   `;
 
-  function clearDropIndicators() {
-    document.querySelectorAll(".drop-before, .drop-after").forEach(el => {
-      el.classList.remove("drop-before", "drop-after");
-    });
-  }
-
-  function dropPosition(e, el) {
-    const rect = el.getBoundingClientRect();
-    return e.clientY < rect.top + rect.height / 2 ? "before" : "after";
-  }
-
   div.addEventListener("dragstart", e => {
     dragSrc = div;
     div.classList.add("dragging");
     e.dataTransfer.effectAllowed = "move";
+    e.dataTransfer.setData("text/plain", "");
+    div.parentNode.insertBefore(indicator, div);
+    indicator.classList.add("active");
   });
   div.addEventListener("dragend", () => {
     div.classList.remove("dragging");
-    clearDropIndicators();
+    clearDropLine();
+    dragSrc = null;
   });
   div.addEventListener("dragover", e => {
     e.preventDefault();
-    clearDropIndicators();
-    div.classList.add(dropPosition(e, div) === "before" ? "drop-before" : "drop-after");
+    if (dropPosition(e, div) === "before") {
+      div.parentNode.insertBefore(indicator, div);
+    } else {
+      div.parentNode.insertBefore(indicator, div.nextSibling);
+    }
   });
-  div.addEventListener("dragleave", clearDropIndicators);
   div.addEventListener("drop", e => {
     e.preventDefault();
-    clearDropIndicators();
-    if (!dragSrc || dragSrc === div) return;
-    const f = div.dataset.field;
-    const arr = currentData[f];
-    const from = parseInt(dragSrc.dataset.index);
-    let to = parseInt(div.dataset.index);
-    if (dropPosition(e, div) === "after") to += 1;
-    if (to > from) to -= 1;
-    arr.splice(to, 0, arr.splice(from, 1)[0]);
-    renderList(containerId, arr, f);
+    e.stopPropagation();
+    commitDrop();
+    clearDropLine();
+    dragSrc = null;
   });
 
   return div;
@@ -389,7 +432,7 @@ async function save() {
   setStatus("Saving…");
   try {
     const r = await fetch("lineup.json", {
-      method: "PUT",
+      method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(currentData, null, 2)
     });

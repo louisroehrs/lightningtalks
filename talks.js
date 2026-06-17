@@ -3,26 +3,54 @@ var data = null;
 
 function generateQR(text) {
   const canvas = document.getElementById("qrcodecanvas");
-  QRCode.toCanvas(canvas, text, {
-    width: 256,
-    margin: 2
-  }, function (error) {
-    if (error) {
-      console.error(error);
-      alert("Failed to generate QR code");
-    }
-  });
+  const url = document.getElementById("qrcodetext");
+  if (canvas && url) {
+    const text = document.getElementById("qrcodetext").getHTML();
+    QRCode.toCanvas(canvas, text, {
+      width: 256,
+      margin: 2
+    }, function (error) {
+      if (error) {
+        console.error(error);
+        alert("Failed to generate QR code");
+      }
+    })
+  }
 }
 
-function listTalks(talks) {
-  document.getElementById("talks").innerHTML ="";
-  talks.map( (talk,i) => {
-    if (talks[i].trim().length > 0) {
-      const li = document.createElement("li");
-      li.innerText = talks[i];
-      document.getElementById("talks").append(li);
-    }
-  })
+function listTalks() {
+  if (document.getElementById("talks") ) {
+    document.getElementById("talks").innerHTML ="";
+    data.talks.map( (talk,i) => {
+      if (data.talks[i].trim().length > 0) {
+        const li = document.createElement("li");
+        li.innerText = data.talks[i];
+        document.getElementById("talks").append(li);
+      }
+    })
+  }
+};
+
+function listEngagements() {
+  if (document.getElementById("engage") ) {
+    document.getElementById("engage").innerHTML = "";
+    data.engage.map( (method,i) => {
+      const p = document.createElement("p");
+      p.innerText = data.engage[i];
+      document.getElementById("engage").append(p);
+    })
+  }
+};
+
+function listBenefits() {
+  if (document.getElementById("benefits") ) {
+    document.getElementById("benefits").innerHTML = "";
+    data.benefits.map( (method,i) => {
+      const p = document.createElement("p");
+      p.innerText = data.benefits[i];
+      document.getElementById("benefits").append(p);
+    })
+  }
 };
 
 function fetchJSON() {
@@ -31,18 +59,19 @@ function fetchJSON() {
     .then(respdata => {
       data = respdata;
       if (!location.href.includes(data.showpage)) {
-        location.href = data.pages[data.showpage];
+        location.href = data.pages[data.showpage].page;
       }
       console.log(data);
       if ( document.getElementById("hosts")) {
         document.getElementById("hosts").innerText = data.hosts;
       }
-      if ( document.getElementById("talks")) {
-        listTalks(data.talks);
-      }
-      if ( document.getElementById("qrcodecanvas")) {
-        generateQR(document.getElementById("qrcodetext").getHTML());
-      }
+
+      listTalks(data.talks);
+      listEngagements(data.engage);
+      listBenefits(data.benefits);
+      
+      generateQR();
+      
     })
     .catch(error => {
       if ( document.getElementById("talks")) {
@@ -53,7 +82,7 @@ function fetchJSON() {
 }
 
 // fetch JSON initially
-fetchJSON();
+setTimeout(fetchJSON,10);
 
 // reload JSON every 20 seconds
 setInterval(fetchJSON, 4000);
@@ -86,4 +115,4 @@ function updateTime() {
   }
 }
 
-setTimeout(updateTime, 1);
+setTimeout(updateTime, 10);

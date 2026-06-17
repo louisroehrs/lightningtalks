@@ -1,18 +1,18 @@
       @font-face {
           font-family: "HackerDojoFont";
-          src: url("./fonts%2Fwhitney-medium.woff?alt=media&token=8133c835-e280-4b0d-977d-fec892aba96e");
+          src: url("./fonts/whitney-medium.otf");
       }
 
 
       @font-face {
           font-family: "Horizon";
-          src: url("./fonts%2Fhorizon.c7c834b7fe209bdc0a30119a6b1d26ae.b3ebf62f8ff8ae950dea860d56c49d1b.woff2?alt=media&token=15a86321-1806-4255-92fc-ffaf461973be");
+          src: url("./fonts/horizon.c7c834b7fe209bdc0a30119a6b1d26ae.b3ebf62f8ff8ae950dea860d56c49d1b.woff2");
       }
 
 
       @font-face {
           font-family: "Lightning";
-          src: url("./fonts%2FEdo_new14539556727599266484.788b49731d86.2a24fe76e95bd0389c47556fa84e15d8.woff2?alt=media&token=b4378efc-6930-4f06-9265-cd25889b366c");
+          src: url("./fonts/Edo_new14539556727599266484.788b49731d86.2a24fe76e95bd0389c47556fa84e15d8.woff2");
       }
 
       BODY {

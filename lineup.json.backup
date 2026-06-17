@@ -1,0 +1,24 @@
+{
+  "showpage": "LT Agenda",
+  "talks": [
+    "Creating not a superfund site",
+    "Magic code writing",
+    "Cool stuff on old macs"
+  ],
+  "hosts": "Louis",
+  "engage": [
+    "Become a member https://hackerdojo.com",
+    "Give at https://givebutter.com/growhackerdojo",
+    "Attend events https://www.meetup.com/hackerdojo",
+    "Watch, like, and subscribe https://www.youtube.com/HackerDojo"
+  ],
+  "qrcodeurl": "https://givebutter.com/growhackerdojo",
+  "pages": {
+    "agenda" : { "name": "LT Agenda", "page": "./agenda.html"},
+    "after" : { "name" :"LT Done", "page": "./after.html"},
+    "welcome" : { "name" :  "HD Welcome", "page" : "./welcome.html"},
+    "pixel" : {"name" : "HD Pixel", "page": "./pixel.html"},
+    "support" : {"name": "HD Support", "page": "./support.html"},
+    "memberbenefits" : { "name":"HD Member Benefits", "page": "/memberbenefits.html"}
+  }
+}

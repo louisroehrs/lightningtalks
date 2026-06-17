@@ -3,44 +3,9 @@
   <head>
 	  <meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-    <script src="talks.js"></script>
-  
-    <style>
-
-      BODY {
-        font-family: Arial, Helvetica, helvetica;
-        font-size: 48px;
-        margin-top:100px;
-        background-color:black;
-        color:white;
-        width: 100%
-      }
-      
-      .title {
-        font-size:190%;
-      }
-      
-      .columns {
-        display:flex;
-        flex-direction: columns;
-        gap: 30px;
-      }
-      
-      .left, .right {
-        text-align: left;
-        width: 40%;
-        padding-left: 100px;
-      }
-      .spacer {
-        height:65px;
-      }
-      .largelineheight {
-        line-height: 1.5
-      }
-      
-    </style>
+    <link href="hdstyle.css" rel="stylesheet">
+    <script src="./talks.js"></script>
   </head>
   
   <body>
@@ -102,7 +67,7 @@
         <div class="lineup">Support the Dojo and keep the spirit of the valley alive.</div>
         <BR><BR>
         <canvas id="qrcodecanvas"></canvas>
-        <div id="qrcodetext">https://givebutter.com/hacker-dojo</div>
+        <div id="qrcodetext">https://www.every.org/hacker-dojo</div>
 
         <div class="largelineheight" id="list"></div>
       </div>
