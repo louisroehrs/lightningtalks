@@ -249,6 +249,12 @@
 </section>
 
 <section>
+  <h2>Member Benefits</h2>
+  <div class="list-editor" id="benefitsList"></div>
+  <button class="add-btn" onclick="addItem('benefitsList', 'benefits')">+ Add item</button>
+</section>
+
+<section>
   <button class="pages-toggle" onclick="togglePages()">Show page URL map</button>
   <div class="pages-grid" id="pagesGrid"></div>
 </section>
@@ -340,6 +346,7 @@ function render() {
   // Lists
   renderList("talksList", d.talks, "talks");
   renderList("engageList", d.engage, "engage");
+  renderList("benefitsList", d.benefits, "benefits");
 
   // Pages
   const grid = document.getElementById("pagesGrid");

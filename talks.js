@@ -35,7 +35,7 @@ function listEngagements() {
   if (document.getElementById("engage") ) {
     document.getElementById("engage").innerHTML = "";
     data.engage.map( (method,i) => {
-      const p = document.createElement("p");
+      const p = document.createElement("li");
       p.innerText = data.engage[i];
       document.getElementById("engage").append(p);
     })
@@ -46,7 +46,7 @@ function listBenefits() {
   if (document.getElementById("benefits") ) {
     document.getElementById("benefits").innerHTML = "";
     data.benefits.map( (method,i) => {
-      const p = document.createElement("p");
+      const p = document.createElement("li");
       p.innerText = data.benefits[i];
       document.getElementById("benefits").append(p);
     })
